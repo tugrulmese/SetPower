@@ -15,7 +15,7 @@
               <tabs>
                 <Tab text="Preview">
                      <content>
-                        <TextArea fx:id="hudsonTextArea" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9b9595;" />
+                        <TextArea fx:id="hudsonTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9b9595;" />
                      </content>
                   </Tab>
               </tabs>

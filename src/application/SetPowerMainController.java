@@ -46,8 +46,6 @@ import java.util.Optional;
 public class SetPowerMainController {
 
 	public String dbAddress = "C:\\SetPower\\src\\db\\powerdb.sqlite";
-	public String dbAddress5 = "C:\\SetPower\\src\\db\\powerdb.sqlite";
-
 
 	public Connection conn = null;
 	private ObservableList<SetInfo> setData = FXCollections.observableArrayList();
@@ -335,28 +333,7 @@ public class SetPowerMainController {
 
 	}
 
-	private String createPreviewText() {
-		String result = "";
-		result = "jaf_branch_name=" + jafBranchText.getText();
-		result = result + "prod_branch_name=" + prodBranchText.getText();
-		/*
-		 * out.println("tests_branch_name=" + testBranchText.getText());
-		 * out.println("dreamhr_branch_name=" + dreamBrancText.getText());
-		 * out.println("antweety_branch_name=" + antweetyBranchText.getText());
-		 * out.println("hudson_ear_folder=" + hudsonEarText.getText());
-		 * out.println("ear_build_file=" + earBuildText.getText());
-		 * out.println("run_jacoco=" + runCheck.getText());
-		 * out.println("build_tools=" + buildCheck.getText());
-		 * out.println("upload_languages=" + uploadCheck.getText());
-		 * out.println("reason=" + reasonArea.getText()); out.println("notes=" +
-		 * notesArea.getText()); out.println("build_jeetah=" +
-		 * jeetahCheck.getText()); out.println("ear_lang=" +
-		 * langCombo.getValue()); out.println("version_update=" +
-		 * versionCheck.getText()); out.println("ear.with.antweety=" +
-		 * earWithCheck.getText());
-		 */
-		return result;
-	}
+	
 
 	@FXML
 	void onConnect(ActionEvent event) {
@@ -539,32 +516,61 @@ public class SetPowerMainController {
 		return setData;
 	}
 
-	public void writeNewFile() {
+	
+	private String createPreviewText() {
+		String result = "";
+		result = "jaf_branch_name=" + jafBranchText.getText() + "\n";
+		result = result + "prod_branch_name=" + prodBranchText.getText()+ "\n";
+		result = result + "tests_branch_name=" + testBranchText.getText()+ "\n";
+		result = result + "dreamhr_branch_name=" + dreamBrancText.getText()+ "\n";
+		result = result + "antweety_branch_name=" + antweetyBranchText.getText()+ "\n";
+		result = result + "hudson_ear_folder=" + hudsonEarText.getText()+ "\n";
+		result = result + "ear_build_file=" + earBuildText.getText()+ "\n";
+		result = result + "run_jacoco=" + runCheck.getText()+ "\n";
+		result = result + "build_tools=" + buildCheck.getText()+ "\n";
+		result = result + "upload_languages=" + uploadCheck.getText()+ "\n";
+		result = result + "reason=" + reasonArea.getText()+ "\n";
+		result = result + "notes=" + notesArea.getText()+ "\n";
+		result = result + "build_jeetah=" + jeetahCheck.getText()+ "\n";
+		result = result + "ear_lang=" + langCombo.getValue()+ "\n";
+		result = result + "version_update=" + versionCheck.getText()+ "\n";
+		result = result + "ear.with.antweety=" + earWithCheck.getText();
+
+		return result;
+	}
+	
+	
+	public void writeNewFile(String text) {
 
 		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("hudson.params", true)))) {
-			out.println("jaf_branch_name=" + jafBranchText.getText());
-			out.println("prod_branch_name=" + prodBranchText.getText());
-			out.println("tests_branch_name=" + testBranchText.getText());
-			out.println("dreamhr_branch_name=" + dreamBrancText.getText());
-			out.println("antweety_branch_name=" + antweetyBranchText.getText());
-			out.println("hudson_ear_folder=" + hudsonEarText.getText());
-			out.println("ear_build_file=" + earBuildText.getText());
-			out.println("run_jacoco=" + runCheck.getText());
-			out.println("build_tools=" + buildCheck.getText());
-			out.println("upload_languages=" + uploadCheck.getText());
-			out.println("reason=" + reasonArea.getText());
-			out.println("notes=" + notesArea.getText());
-			out.println("build_jeetah=" + jeetahCheck.getText());
-			out.println("ear_lang=" + langCombo.getValue());
-			out.println("version_update=" + versionCheck.getText());
-			out.println("product_version=" + productVersion.getText());
-			out.println("ear.with.antweety=" + earWithCheck.getText());
+			
+			
+			out.write(text);
+			
+//			out.println("jaf_branch_name=" + jafBranchText.getText());
+//			out.println("prod_branch_name=" + prodBranchText.getText());
+//			out.println("tests_branch_name=" + testBranchText.getText());
+//			out.println("dreamhr_branch_name=" + dreamBrancText.getText());
+//			out.println("antweety_branch_name=" + antweetyBranchText.getText());
+//			out.println("hudson_ear_folder=" + hudsonEarText.getText());
+//			out.println("ear_build_file=" + earBuildText.getText());
+//			out.println("run_jacoco=" + runCheck.getText());
+//			out.println("build_tools=" + buildCheck.getText());
+//			out.println("upload_languages=" + uploadCheck.getText());
+//			out.println("reason=" + reasonArea.getText());
+//			out.println("notes=" + notesArea.getText());
+//			out.println("build_jeetah=" + jeetahCheck.getText());
+//			out.println("ear_lang=" + langCombo.getValue());
+//			out.println("version_update=" + versionCheck.getText());
+//			out.println("product_version=" + productVersion.getText());
+//			out.println("ear.with.antweety=" + earWithCheck.getText());
+			
 
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
 
-		System.out.println("dosyaoluştu");
+		System.out.println("Dosya olustu");
 
 	}
 

@@ -19,6 +19,7 @@ public class Main extends Application {
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.load(getClass().getResource("SetPowerMain.fxml").openStream());
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("SetPower HudsonFiles");
 			primaryStage.show();
 			primaryStage.setOnCloseRequest(new EventHandler() {
 
