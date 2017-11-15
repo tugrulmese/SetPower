@@ -46,6 +46,7 @@ import java.util.Optional;
 public class SetPowerMainController {
 
 	public String dbAddress = "C:\\SetPower\\src\\db\\powerdb.sqlite";
+	public String dbAddress2 = "C:\\SetPower\\src\\db\\powerdb2.sqlite";
 
 	public Connection conn = null;
 	private ObservableList<SetInfo> setData = FXCollections.observableArrayList();
