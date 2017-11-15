@@ -45,6 +45,8 @@ import java.util.Optional;
 
 public class SetPowerMainController {
 
+	public String dbAddress = "C:\\SetPower\\src\\db\\powerdb.sqlite";
+
 	public Connection conn = null;
 	private ObservableList<SetInfo> setData = FXCollections.observableArrayList();
 
@@ -140,6 +142,8 @@ public class SetPowerMainController {
 
 	@FXML
 	private TableColumn<SetInfo, String> prodColumn;
+
+	public static String previewText = "";
 
 	public void tableAddData(SetInfo obj) {
 
@@ -314,22 +318,42 @@ public class SetPowerMainController {
 	void openPreview(ActionEvent event) {
 
 		try {
-
+			previewText = createPreviewText();
 			Stage stage = new Stage();
 			Parent root1 = FXMLLoader.load(getClass().getResource("Preview.fxml"));
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Preview Hudson Files");
 			stage.setScene(new Scene(root1, 495, 480));
 			stage.show();
-			FXMLLoader fxmlLoader = new FXMLLoader();
-			PreviewController fooController = (PreviewController) fxmlLoader.getController();
-			fooController.s="abc";
-		
+
 		} catch (IOException e) {
 
 			e.printStackTrace();
 		}
 
+	}
+
+	private String createPreviewText() {
+		String result = "";
+		result = "jaf_branch_name=" + jafBranchText.getText();
+		result = result + "prod_branch_name=" + prodBranchText.getText();
+		/*
+		 * out.println("tests_branch_name=" + testBranchText.getText());
+		 * out.println("dreamhr_branch_name=" + dreamBrancText.getText());
+		 * out.println("antweety_branch_name=" + antweetyBranchText.getText());
+		 * out.println("hudson_ear_folder=" + hudsonEarText.getText());
+		 * out.println("ear_build_file=" + earBuildText.getText());
+		 * out.println("run_jacoco=" + runCheck.getText());
+		 * out.println("build_tools=" + buildCheck.getText());
+		 * out.println("upload_languages=" + uploadCheck.getText());
+		 * out.println("reason=" + reasonArea.getText()); out.println("notes=" +
+		 * notesArea.getText()); out.println("build_jeetah=" +
+		 * jeetahCheck.getText()); out.println("ear_lang=" +
+		 * langCombo.getValue()); out.println("version_update=" +
+		 * versionCheck.getText()); out.println("ear.with.antweety=" +
+		 * earWithCheck.getText());
+		 */
+		return result;
 	}
 
 	@FXML
@@ -557,7 +581,7 @@ public class SetPowerMainController {
 
 	private void connOpen() {
 
-		String url = "jdbc:sqlite:C:\\JavaFXworkspace\\SetPower\\src\\db\\powerdb.sqlite";
+		String url = "jdbc:sqlite:" + dbAddress;
 		try {
 			conn = DriverManager.getConnection(url);
 			if (conn != null) {

@@ -20,9 +20,9 @@ public class PreviewController {
 
 	@FXML
 	public void initialize() {
-
-		hudsonTextArea.setText(s);
+		hudsonTextArea.setText(SetPowerMainController.previewText);
 	}
+
 
 	@FXML
 	void onCancel(ActionEvent event) {
@@ -38,6 +38,6 @@ public class PreviewController {
 
 	}
 
-	
+
 
 }
