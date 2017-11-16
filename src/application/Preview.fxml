@@ -20,8 +20,9 @@
                   </Tab>
               </tabs>
             </TabPane>
-            <Button fx:id="writeButton" layoutX="349.0" layoutY="390.0" mnemonicParsing="false" onAction="#onWrite" text="Write" />
+            <Button fx:id="writeButton" layoutX="182.0" layoutY="390.0" mnemonicParsing="false" text="Write" visible="false" />
             <Button fx:id="cancelButton" layoutX="427.0" layoutY="390.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
+            <Button fx:id="kayitYeri" layoutX="354.0" layoutY="390.0" mnemonicParsing="false" onAction="#kayitYeri" text="Save" />
          </children>
       </AnchorPane>
    </children>

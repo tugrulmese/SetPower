@@ -1,6 +1,7 @@
 package application;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,6 +11,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
@@ -39,9 +43,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.Duration;
 
 import java.sql.Statement;
 import java.util.Optional;
+
 
 public class SetPowerMainController {
 
@@ -91,6 +97,9 @@ public class SetPowerMainController {
 
 	@FXML
 	private CheckBox earWithCheck;
+
+	@FXML
+	private Label saveStatusLabel;
 
 	@FXML
 	private TextField prodBranchText;
@@ -291,7 +300,7 @@ public class SetPowerMainController {
 		// allDataTable.refresh();
 		clearControl();
 		connectionStatusLabel.setText("Bağlantı kesildi.");
-
+		previewScene.setDisable(true);
 		connClose();
 	}
 
@@ -425,7 +434,13 @@ public class SetPowerMainController {
 			System.out.println(e.getMessage());
 		}
 		previewScene.setDisable(false);
+		saveStatusLabel.setText("Update Succeed");
 
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> saveStatusLabel.setText("")),
+				new KeyFrame(Duration.seconds(0)));
+
+		timeline.setCycleCount(Animation.INDEFINITE);
+		timeline.play();
 	}
 
 	public void clearControl() {
@@ -485,6 +500,12 @@ public class SetPowerMainController {
 			System.out.println(e.getMessage());
 		}
 		previewScene.setDisable(false);
+		saveStatusLabel.setText("Insert Succeed");
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> saveStatusLabel.setText("")),
+				new KeyFrame(Duration.seconds(0)));
+
+		timeline.setCycleCount(Animation.INDEFINITE);
+		timeline.play();
 	}
 
 	public void createData() {
@@ -538,16 +559,19 @@ public class SetPowerMainController {
 
 	public void writeNewFile(String text) {
 
-		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter("hudson.params", false)))) {
+		@SuppressWarnings("unused")
+		PreviewController controller = new PreviewController();
+		File location = PreviewController.kayityeri;
+
+		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(location, false)))) {
 
 			out.write(text);
-
 
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
 
-		System.out.println("Dosya olustu");
+		System.out.println("File is Created");
 
 	}
 
