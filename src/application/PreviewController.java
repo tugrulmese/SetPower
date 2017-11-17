@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 
 public class PreviewController {
 
-	
 	@FXML
 	private TextArea hudsonTextArea;
 
@@ -22,7 +21,6 @@ public class PreviewController {
 	@FXML
 	private Button cancelButton;
 
-	
 	public static File filePath;
 
 	@FXML
@@ -30,14 +28,13 @@ public class PreviewController {
 
 		FileChooser fileChooser = new FileChooser();
 		Stage stage = new Stage();
-		
+
 		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
 		FileChooser.ExtensionFilter extFilter2 = new FileChooser.ExtensionFilter("Params Files (*.params)", "*.params");
 		fileChooser.getExtensionFilters().addAll(extFilter2, extFilter);
 		fileChooser.setInitialFileName("hudson");
 		File file = fileChooser.showSaveDialog(stage);
-		if(file!=null)
-		{
+		if (file != null) {
 			System.out.println("file adress" + file);
 			System.out.println(file.getName());
 			filePath = file;
@@ -47,10 +44,9 @@ public class PreviewController {
 			Stage stage3 = (Stage) createFileSave.getScene().getWindow();
 			stage3.close();
 			succesWrite();
-			
+
 		}
-	
-		
+
 	}
 
 	@FXML
@@ -73,7 +69,7 @@ public class PreviewController {
 	// controller.writeNewFile(text);
 	// if (text == null) {
 	//
-	 
+
 	// }
 	//
 	// else {

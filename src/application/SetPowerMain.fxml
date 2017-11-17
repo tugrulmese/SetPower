@@ -4,6 +4,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="578.0" prefWidth="897.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SetPowerMainController">
+<VBox prefHeight="578.0" prefWidth="1126.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SetPowerMainController">
 	<children>
 		<MenuBar VBox.vgrow="NEVER">
 			<menus>
@@ -34,9 +35,9 @@
 				</Menu>
 			</menus>
 		</MenuBar>
-		<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="520.0" prefWidth="1072.0" VBox.vgrow="ALWAYS">
+		<AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="553.0" prefWidth="1126.0" VBox.vgrow="ALWAYS">
 			<children>
-            <Pane fx:id="paneControl" layoutX="287.0" layoutY="66.0" prefHeight="446.0" prefWidth="595.0">
+            <Pane fx:id="paneControl" layoutX="287.0" layoutY="66.0" prefHeight="446.0" prefWidth="870.0">
                <children>
       				<CheckBox fx:id="runCheck" layoutX="438.0" layoutY="2.0" mnemonicParsing="false" onAction="#onSelect" text="false" />
       				<Label layoutY="71.0" text="Prod Branch Name" />
@@ -65,7 +66,7 @@
       				<Label layoutX="304.0" layoutY="100.0" text="Build Jeetah" />
       				<CheckBox fx:id="jeetahCheck" layoutX="437.0" layoutY="99.0" onAction="#onSelect" text="false" />
       				<Label layoutX="304.0" layoutY="131.0" text="Ear Languages" />
-      				<ComboBox fx:id="langCombo" layoutX="435.0" layoutY="126.0" prefWidth="150.0" />
+      				<ComboBox fx:id="langCombo" accessibleRole="CHECK_BOX" layoutX="435.0" layoutY="126.0" prefWidth="150.0" />
       				<Label layoutX="304.0" layoutY="193.0" text="Version Update" />
       				<CheckBox fx:id="versionCheck" layoutX="437.0" layoutY="192.0" mnemonicParsing="false" onAction="#onSelect" text="false" />
       				<Label layoutX="304.0" layoutY="222.0" text="Ear With Antweety" />
@@ -78,11 +79,12 @@
       				<Button fx:id="SaveButton1" layoutX="403.0" layoutY="390.0" mnemonicParsing="false" onAction="#onSave1" prefHeight="25.0" prefWidth="73.0" text="Save" />
                   <Button fx:id="previewScene" disable="true" layoutX="494.0" layoutY="390.0" mnemonicParsing="false" onAction="#openPreview" prefHeight="25.0" prefWidth="93.0" text="Write File" />
                   <Label fx:id="saveStatusLabel" layoutX="413.0" layoutY="424.0" />
+                  <ListView fx:id="listViewCheck" layoutX="591.0" layoutY="125.0" prefHeight="235.0" prefWidth="200.0" />
                </children>
             </Pane>
 				<Button fx:id="connectButton" layoutX="42.0" layoutY="14.0" mnemonicParsing="false" onAction="#onConnect" text="Connect" />
 				<Label fx:id="connectionStatusLabel" layoutX="112.0" layoutY="18.0" prefHeight="17.0" prefWidth="164.0" />
-				<TableView fx:id="allDataTable" cache="true" layoutX="7.0" layoutY="66.0" prefHeight="480.0" prefWidth="248.0" AnchorPane.bottomAnchor="8.0" AnchorPane.topAnchor="65.0">
+				<TableView fx:id="allDataTable" cache="true" layoutX="14.0" layoutY="66.0" prefHeight="480.0" prefWidth="223.0" AnchorPane.bottomAnchor="7.0" AnchorPane.topAnchor="66.0">
                <columns>
                   <TableColumn fx:id="codeColumn" prefWidth="75.0" text="Code" />
                   <TableColumn fx:id="jafColumn" prefWidth="75.0" text="JafBranch" />

@@ -16,10 +16,14 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
+import javafx.collections.SetChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
@@ -33,6 +37,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -40,6 +45,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -55,6 +61,7 @@ public class SetPowerMainController {
 
 	public Connection conn = null;
 	private ObservableList<SetInfo> setData = FXCollections.observableArrayList();
+	
 
 	@FXML
 	private CheckBox buildCheck;
@@ -64,6 +71,9 @@ public class SetPowerMainController {
 
 	@FXML
 	private Pane paneControl;
+
+	@FXML
+	private ListView<String> listViewCheck;
 
 	@FXML
 	private TextArea notesArea;
@@ -231,6 +241,7 @@ public class SetPowerMainController {
 
 	@FXML
 	public void initialize() {
+		listviewItemAdd();
 		comboboxItemAdd();
 		if (codeColumn == null)
 			codeColumn = new TableColumn<SetInfo, String>();
@@ -324,7 +335,7 @@ public class SetPowerMainController {
 		allDataTable.getItems().clear();
 		createData();
 	}
-	
+
 	@FXML
 	public void onSave1(ActionEvent event) {
 		System.out.println("Save button clicked!");
@@ -373,26 +384,27 @@ public class SetPowerMainController {
 		alert.showAndWait();
 
 	}
+
 	@FXML
 	void itemNew(ActionEvent event) {
 
 		clearControl();
-		
 
 	}
+
 	@FXML
 	void itemSave(ActionEvent event) {
 
 		if (conn != null)
 			saveAction();
-}
+	}
+
 	@FXML
 	void itemRevert(ActionEvent event) {
-		
-		tableAddData((SetInfo) ((TableViewSelectionModel<?>)allDataTable.getSelectionModel()).getSelectedItem());
-		
+
+		tableAddData((SetInfo) ((TableViewSelectionModel<?>) allDataTable.getSelectionModel()).getSelectedItem());
+
 	}
-	
 
 	@FXML
 	void openPreview(ActionEvent event) {
@@ -462,8 +474,42 @@ public class SetPowerMainController {
 		if (langCombo == null || langCombo.getItems() == null)
 			return;
 		langCombo.getItems().addAll("standart", "full");
-	}
 
+	}
+	
+	public void listviewItemAdd() {
+	
+		 
+	        String[] toppings = {"tr", "en", "ar", "de", "fr"};
+	        listViewCheck.getItems().addAll(toppings);
+
+	        listViewCheck.setCellFactory(CheckBoxListCell.forListView(new Callback<String, ObservableValue<Boolean>>() {
+	            @Override
+	            public ObservableValue<Boolean> call(String item) {
+	                BooleanProperty observable = new SimpleBooleanProperty();
+	                ObservableSet<String> selectedToppings = FXCollections.observableSet();
+	                observable.addListener((obs, wasSelected, isNowSelected) -> {
+	                    if (isNowSelected) {
+	                        selectedToppings.add(item);
+	                    } else {
+	                        selectedToppings.remove(item);
+	                    }
+	                    System.out.println(selectedToppings.size());
+
+	                });
+	                
+	                observable.set(selectedToppings.contains(item));
+	                selectedToppings.addListener((SetChangeListener.Change<? extends String> c) -> 
+	                    observable.set(selectedToppings.contains(item)));
+	              
+	                return observable;
+
+	            }
+	        }));	        
+	}
+	
+		
+		
 	private void updateParam(int ref) {
 		if (ref == 0)
 			return;
@@ -526,22 +572,22 @@ public class SetPowerMainController {
 		
 		runCheck.setText("false");
 		runCheck.setSelected(false);
-		
+
 		buildCheck.setText("false");
 		buildCheck.setSelected(false);
-		
+
 		uploadCheck.setText("false");
 		uploadCheck.setSelected(false);
-		
+
 		jeetahCheck.setText("false");
 		jeetahCheck.setSelected(false);
-		
+
 		versionCheck.setText("false");
 		versionCheck.setSelected(false);
-		
+
 		earWithCheck.setText("false");
 		earWithCheck.setSelected(false);
-		
+
 		reasonArea.clear();
 		notesArea.clear();
 		langCombo.setValue(null);

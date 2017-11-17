@@ -15,7 +15,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("SetPowerMain.fxml"));
-			Scene scene = new Scene(root, 950, 580);
+			Scene scene = new Scene(root, 1126, 580);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.load(getClass().getResource("SetPowerMain.fxml").openStream());
