@@ -22,7 +22,7 @@
             </TabPane>
             <Button fx:id="writeButton" layoutX="182.0" layoutY="390.0" mnemonicParsing="false" text="Write" visible="false" />
             <Button fx:id="cancelButton" layoutX="427.0" layoutY="390.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
-            <Button fx:id="kayitYeri" layoutX="354.0" layoutY="390.0" mnemonicParsing="false" onAction="#kayitYeri" text="Save" />
+            <Button fx:id="createFileSave" layoutX="354.0" layoutY="390.0" mnemonicParsing="false" onAction="#onSave" text="Save" />
          </children>
       </AnchorPane>
    </children>

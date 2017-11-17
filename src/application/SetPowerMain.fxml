@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -22,37 +21,15 @@
 			<menus>
 				<Menu mnemonicParsing="false" text="File">
 					<items>
-						<MenuItem mnemonicParsing="false" text="New" />
-						<MenuItem mnemonicParsing="false" text="Open…" />
-						<Menu mnemonicParsing="false" text="Open Recent" />
-						<SeparatorMenuItem mnemonicParsing="false" />
-						<MenuItem mnemonicParsing="false" text="Close" />
-						<MenuItem mnemonicParsing="false" text="Save" />
-						<MenuItem mnemonicParsing="false" text="Save As…" />
-						<MenuItem mnemonicParsing="false" text="Revert" />
-						<SeparatorMenuItem mnemonicParsing="false" />
-						<MenuItem mnemonicParsing="false" text="Preferences…" />
-						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem fx:id="menuItemNew" mnemonicParsing="false" onAction="#itemNew" text="New" />
+						<MenuItem fx:id="menuItemSave" mnemonicParsing="false" onAction="#itemSave" text="Save" />
+						<MenuItem fx:id="menuItemRevert" mnemonicParsing="false" onAction="#itemRevert" text="Revert" />
 						<MenuItem fx:id="exitProgram" mnemonicParsing="false" onAction="#closeApp" text="Quit" />
-					</items>
-				</Menu>
-				<Menu mnemonicParsing="false" text="Edit">
-					<items>
-						<MenuItem mnemonicParsing="false" text="Undo" />
-						<MenuItem mnemonicParsing="false" text="Redo" />
-						<SeparatorMenuItem mnemonicParsing="false" />
-						<MenuItem mnemonicParsing="false" text="Cut" />
-						<MenuItem mnemonicParsing="false" text="Copy" />
-						<MenuItem mnemonicParsing="false" text="Paste" />
-						<MenuItem mnemonicParsing="false" text="Delete" />
-						<SeparatorMenuItem mnemonicParsing="false" />
-						<MenuItem mnemonicParsing="false" text="Select All" />
-						<MenuItem mnemonicParsing="false" text="Unselect All" />
 					</items>
 				</Menu>
 				<Menu mnemonicParsing="false" text="Help">
 					<items>
-						<MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+						<MenuItem fx:id="helpAbout" mnemonicParsing="false" onAction="#aboutAlert" text="About SetPower" />
 					</items>
 				</Menu>
 			</menus>
@@ -61,7 +38,7 @@
 			<children>
             <Pane fx:id="paneControl" layoutX="287.0" layoutY="66.0" prefHeight="446.0" prefWidth="595.0">
                <children>
-      				<CheckBox fx:id="runCheck" layoutX="438.0" layoutY="2.0" mnemonicParsing="false" onAction="#onSelect" text="False" />
+      				<CheckBox fx:id="runCheck" layoutX="438.0" layoutY="2.0" mnemonicParsing="false" onAction="#onSelect" text="false" />
       				<Label layoutY="71.0" text="Prod Branch Name" />
       				<Label layoutY="106.0" text="Tests Branch Name" />
       				<Label layoutY="140.0" text="DreamHr Branch Name" />
@@ -77,22 +54,22 @@
       				<Label layoutY="242.0" text="Ear Build File" />
       				<TextField fx:id="earBuildText" layoutX="133.0" layoutY="238.0" />
       				<Label layoutX="304.0" layoutY="2.0" text="Run Jacoco" />
-      				<CheckBox fx:id="buildCheck" layoutX="437.0" layoutY="33.0" mnemonicParsing="false" onAction="#onSelect" text="False" />
+      				<CheckBox fx:id="buildCheck" layoutX="437.0" layoutY="33.0" mnemonicParsing="false" onAction="#onSelect" text="false" />
       				<Label layoutX="304.0" layoutY="33.0" text="Build Tools" />
-      				<CheckBox fx:id="uploadCheck" layoutX="437.0" layoutY="66.0" mnemonicParsing="false" onAction="#onSelect" text="False" />
+      				<CheckBox fx:id="uploadCheck" layoutX="437.0" layoutY="66.0" mnemonicParsing="false" onAction="#onSelect" text="false" />
       				<Label layoutX="304.0" layoutY="65.0" text="Upload Languages" />
       				<TextArea fx:id="reasonArea" layoutX="85.0" layoutY="273.0" prefHeight="86.0" prefWidth="197.0" />
       				<Label layoutY="276.0" text="Reason" />
       				<TextArea fx:id="notesArea" layoutX="390.0" layoutY="275.0" prefHeight="86.0" prefWidth="197.0" />
       				<Label layoutX="304.0" layoutY="275.0" text="Notes" />
       				<Label layoutX="304.0" layoutY="100.0" text="Build Jeetah" />
-      				<CheckBox fx:id="jeetahCheck" layoutX="437.0" layoutY="99.0" onAction="#onSelect" text="False" />
+      				<CheckBox fx:id="jeetahCheck" layoutX="437.0" layoutY="99.0" onAction="#onSelect" text="false" />
       				<Label layoutX="304.0" layoutY="131.0" text="Ear Languages" />
       				<ComboBox fx:id="langCombo" layoutX="435.0" layoutY="126.0" prefWidth="150.0" />
       				<Label layoutX="304.0" layoutY="193.0" text="Version Update" />
-      				<CheckBox fx:id="versionCheck" layoutX="437.0" layoutY="192.0" mnemonicParsing="false" onAction="#onSelect" text="False" />
+      				<CheckBox fx:id="versionCheck" layoutX="437.0" layoutY="192.0" mnemonicParsing="false" onAction="#onSelect" text="false" />
       				<Label layoutX="304.0" layoutY="222.0" text="Ear With Antweety" />
-      				<CheckBox fx:id="earWithCheck" layoutX="437.0" layoutY="222.0" mnemonicParsing="false" onAction="#onSelect" text="False" />
+      				<CheckBox fx:id="earWithCheck" layoutX="437.0" layoutY="222.0" mnemonicParsing="false" onAction="#onSelect" text="false" />
       				<Label layoutY="4.0" text="Code" />
       				<TextField fx:id="CodeTextBox" layoutX="133.0" />
       				<Label layoutX="303.0" layoutY="165.0" text="Product Version" />

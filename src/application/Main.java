@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 
 public class Main extends Application {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -18,6 +19,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.load(getClass().getResource("SetPowerMain.fxml").openStream());
+			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("images/logo.jpg")));
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("SetPower HudsonFiles");
 			primaryStage.show();

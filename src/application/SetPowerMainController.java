@@ -37,6 +37,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -47,7 +48,6 @@ import javafx.util.Duration;
 
 import java.sql.Statement;
 import java.util.Optional;
-
 
 public class SetPowerMainController {
 
@@ -72,6 +72,15 @@ public class SetPowerMainController {
 	private MenuItem exitProgram;
 
 	@FXML
+	private MenuItem menuItemNew;
+
+	@FXML
+	private MenuItem menuItemSave;
+
+	@FXML
+	private MenuItem menuItemRevert;
+
+	@FXML
 	private TableView<SetInfo> allDataTable;
 
 	@FXML
@@ -82,6 +91,8 @@ public class SetPowerMainController {
 
 	@FXML
 	private CheckBox jeetahCheck;
+	@FXML
+	private MenuItem helpAbout;
 
 	@FXML
 	private TextField jafBranchText;
@@ -172,14 +183,41 @@ public class SetPowerMainController {
 				antweetyBranchText.setText(rs.getString("AntweetyBranchName"));
 				hudsonEarText.setText(rs.getString("HudsonEarFolder"));
 				earBuildText.setText(rs.getString("EarBuildFile"));
+
 				runCheck.setText(rs.getString("RunJacoco"));
+				if (runCheck.getText().compareTo("true") == 0)
+					runCheck.setSelected(true);
+				else
+					runCheck.setSelected(false);
+
 				buildCheck.setText(rs.getString("BuildTools"));
+				if (buildCheck.getText().compareTo("true") == 0)
+					buildCheck.setSelected(true);
+				else
+					buildCheck.setSelected(false);
+
 				uploadCheck.setText(rs.getString("UpgradeLang"));
+				if (uploadCheck.getText().compareTo("true") == 0)
+					uploadCheck.setSelected(true);
+				else
+					uploadCheck.setSelected(false);
 				jeetahCheck.setText(rs.getString("BuildJeetah"));
+				if (jeetahCheck.getText().compareTo("true") == 0)
+					jeetahCheck.setSelected(true);
+				else
+					jeetahCheck.setSelected(false);
 				langCombo.setValue(rs.getString("EarLang"));
 				versionCheck.setText(rs.getString("VersionUpdate"));
+				if (versionCheck.getText().compareTo("true") == 0)
+					versionCheck.setSelected(true);
+				else
+					versionCheck.setSelected(false);
 				productVersion.setText(rs.getString("ProductVersion"));
 				earWithCheck.setText(rs.getString("EarWithAntweety"));
+				if (earWithCheck.getText().compareTo("true") == 0)
+					earWithCheck.setSelected(true);
+				else
+					earWithCheck.setSelected(false);
 				reasonArea.setText(rs.getString("Reason"));
 				notesArea.setText(rs.getString("Notes"));
 
@@ -260,10 +298,7 @@ public class SetPowerMainController {
 
 	}
 
-	@FXML
-	void onSave1(ActionEvent event) {
-		System.out.println("Save button clicked!");
-
+	public void saveAction() {
 		if (conn == null) {
 
 			Alert alert = new Alert(AlertType.ERROR);
@@ -288,6 +323,13 @@ public class SetPowerMainController {
 		}
 		allDataTable.getItems().clear();
 		createData();
+	}
+	
+	@FXML
+	public void onSave1(ActionEvent event) {
+		System.out.println("Save button clicked!");
+
+		saveAction();
 
 	}
 
@@ -297,7 +339,6 @@ public class SetPowerMainController {
 		paneControl.setDisable(true);
 		connectButton.setDisable(false);
 		allDataTable.getItems().clear();
-		// allDataTable.refresh();
 		clearControl();
 		connectionStatusLabel.setText("Bağlantı kesildi.");
 		previewScene.setDisable(true);
@@ -310,9 +351,9 @@ public class SetPowerMainController {
 		CheckBox chkBox = (CheckBox) event.getSource();
 		if (chkBox.isSelected()) {
 
-			chkBox.setText("True");
+			chkBox.setText("true");
 		} else {
-			chkBox.setText("False");
+			chkBox.setText("false");
 		}
 	}
 
@@ -322,6 +363,36 @@ public class SetPowerMainController {
 		System.out.println("Database connection is closed");
 		Platform.exit();
 	}
+
+	@FXML
+	void aboutAlert(ActionEvent event) {
+
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("About SetPower");
+		alert.setHeaderText("Parameter file generator for Hudson" + "\n" + "Created By Tugrul.Mese@logo.com.tr");
+		alert.showAndWait();
+
+	}
+	@FXML
+	void itemNew(ActionEvent event) {
+
+		clearControl();
+		
+
+	}
+	@FXML
+	void itemSave(ActionEvent event) {
+
+		if (conn != null)
+			saveAction();
+}
+	@FXML
+	void itemRevert(ActionEvent event) {
+		
+		tableAddData((SetInfo) ((TableViewSelectionModel<?>)allDataTable.getSelectionModel()).getSelectedItem());
+		
+	}
+	
 
 	@FXML
 	void openPreview(ActionEvent event) {
@@ -452,12 +523,25 @@ public class SetPowerMainController {
 		antweetyBranchText.clear();
 		hudsonEarText.clear();
 		earBuildText.clear();
-		runCheck.setText("False");
-		buildCheck.setText("False");
-		uploadCheck.setText("False");
-		jeetahCheck.setText("False");
-		versionCheck.setText("False");
-		earWithCheck.setText("False");
+		
+		runCheck.setText("false");
+		runCheck.setSelected(false);
+		
+		buildCheck.setText("false");
+		buildCheck.setSelected(false);
+		
+		uploadCheck.setText("false");
+		uploadCheck.setSelected(false);
+		
+		jeetahCheck.setText("false");
+		jeetahCheck.setSelected(false);
+		
+		versionCheck.setText("false");
+		versionCheck.setSelected(false);
+		
+		earWithCheck.setText("false");
+		earWithCheck.setSelected(false);
+		
 		reasonArea.clear();
 		notesArea.clear();
 		langCombo.setValue(null);
@@ -561,7 +645,7 @@ public class SetPowerMainController {
 
 		@SuppressWarnings("unused")
 		PreviewController controller = new PreviewController();
-		File location = PreviewController.kayityeri;
+		File location = PreviewController.filePath;
 
 		try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(location, false)))) {
 
@@ -596,10 +680,22 @@ public class SetPowerMainController {
 			if (conn != null) {
 				conn.getSchema();
 				connectionStatusLabel.setText("Bağlantı başarılı");
+				Timeline timeline = new Timeline(
+						new KeyFrame(Duration.seconds(2), event -> connectionStatusLabel.setText("")),
+						new KeyFrame(Duration.seconds(0)));
+
+				timeline.setCycleCount(Animation.INDEFINITE);
+				timeline.play();
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			connectionStatusLabel.setText("Baglanti basarisiz");
+			Timeline timeline = new Timeline(
+					new KeyFrame(Duration.seconds(2), event -> connectionStatusLabel.setText("")),
+					new KeyFrame(Duration.seconds(0)));
+
+			timeline.setCycleCount(Animation.INDEFINITE);
+			timeline.play();
 		}
 
 	}
