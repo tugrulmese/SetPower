@@ -16,14 +16,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
-import javafx.collections.SetChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
@@ -45,7 +41,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableView.TableViewSelectionModel;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.CheckBoxListCell;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -61,7 +56,6 @@ public class SetPowerMainController {
 
 	public Connection conn = null;
 	private ObservableList<SetInfo> setData = FXCollections.observableArrayList();
-	
 
 	@FXML
 	private CheckBox buildCheck;
@@ -228,6 +222,7 @@ public class SetPowerMainController {
 					earWithCheck.setSelected(true);
 				else
 					earWithCheck.setSelected(false);
+
 				reasonArea.setText(rs.getString("Reason"));
 				notesArea.setText(rs.getString("Notes"));
 
@@ -241,7 +236,6 @@ public class SetPowerMainController {
 
 	@FXML
 	public void initialize() {
-		listviewItemAdd();
 		comboboxItemAdd();
 		if (codeColumn == null)
 			codeColumn = new TableColumn<SetInfo, String>();
@@ -346,6 +340,7 @@ public class SetPowerMainController {
 
 	@FXML
 	void onCancel(ActionEvent event) {
+
 		System.out.println("Cancel button clicked!");
 		paneControl.setDisable(true);
 		connectButton.setDisable(false);
@@ -476,40 +471,7 @@ public class SetPowerMainController {
 		langCombo.getItems().addAll("standart", "full");
 
 	}
-	
-	public void listviewItemAdd() {
-	
-		 
-	        String[] toppings = {"tr", "en", "ar", "de", "fr"};
-	        listViewCheck.getItems().addAll(toppings);
 
-	        listViewCheck.setCellFactory(CheckBoxListCell.forListView(new Callback<String, ObservableValue<Boolean>>() {
-	            @Override
-	            public ObservableValue<Boolean> call(String item) {
-	                BooleanProperty observable = new SimpleBooleanProperty();
-	                ObservableSet<String> selectedToppings = FXCollections.observableSet();
-	                observable.addListener((obs, wasSelected, isNowSelected) -> {
-	                    if (isNowSelected) {
-	                        selectedToppings.add(item);
-	                    } else {
-	                        selectedToppings.remove(item);
-	                    }
-	                    System.out.println(selectedToppings.size());
-
-	                });
-	                
-	                observable.set(selectedToppings.contains(item));
-	                selectedToppings.addListener((SetChangeListener.Change<? extends String> c) -> 
-	                    observable.set(selectedToppings.contains(item)));
-	              
-	                return observable;
-
-	            }
-	        }));	        
-	}
-	
-		
-		
 	private void updateParam(int ref) {
 		if (ref == 0)
 			return;
@@ -569,25 +531,18 @@ public class SetPowerMainController {
 		antweetyBranchText.clear();
 		hudsonEarText.clear();
 		earBuildText.clear();
-		
 		runCheck.setText("false");
 		runCheck.setSelected(false);
-
 		buildCheck.setText("false");
 		buildCheck.setSelected(false);
-
 		uploadCheck.setText("false");
 		uploadCheck.setSelected(false);
-
 		jeetahCheck.setText("false");
 		jeetahCheck.setSelected(false);
-
 		versionCheck.setText("false");
 		versionCheck.setSelected(false);
-
 		earWithCheck.setText("false");
 		earWithCheck.setSelected(false);
-
 		reasonArea.clear();
 		notesArea.clear();
 		langCombo.setValue(null);

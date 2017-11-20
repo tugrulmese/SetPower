@@ -60,66 +60,6 @@ public class PreviewController {
 		stage.close();
 	}
 
-	// @SuppressWarnings("unused")
-	// @FXML
-	// void onWrite(ActionEvent event) {
-	//
-	// SetPowerMainController controller = new SetPowerMainController();
-	// String text = SetPowerMainController.previewText;
-	// controller.writeNewFile(text);
-	// if (text == null) {
-	//
-
-	// }
-	//
-	// else {
-	//
-	// File f = new File(hudsonPramAdress);
-	// if (f.exists() && !f.isDirectory()) {
-	//
-	// try (BufferedReader reader = new BufferedReader(new FileReader(new
-	// File("hudson.params")))) {
-	//
-	// String line;
-	// while ((line = reader.readLine()) == null)
-	// ;
-	//
-	// if (line != null) {
-	// Alert alert = new Alert(AlertType.CONFIRMATION);
-	// alert.setTitle("File is available");
-	// alert.setHeaderText("There is a file with the same name");
-	// alert.setContentText("Do you write on it?");
-	//
-	// Optional<ButtonType> result = alert.showAndWait();
-	// if (result.get() == ButtonType.OK) {
-	//
-	// controller.writeNewFile(text);
-	// alert.close();
-	// succesWrite();
-	// }
-	// if (result.get() == ButtonType.CANCEL) {
-	// alert.close();
-	// }
-	//
-	// } else {
-	//
-	// controller.writeNewFile(text);
-	// succesWrite();
-	// }
-	//
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// }
-	// } else {
-	//
-	// controller.writeNewFile(text);
-	// succesWrite();
-	// }
-	//
-	// }
-	//
-	// }
-	//
 	public void succesWrite() {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Writing completed");

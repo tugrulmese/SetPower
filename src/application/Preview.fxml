@@ -7,22 +7,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="433.0" prefWidth="496.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.PreviewController">
-   <children>
-      <AnchorPane prefHeight="446.0" prefWidth="496.0">
-         <children>
-            <TabPane layoutX="17.0" layoutY="34.0" prefHeight="342.0" prefWidth="462.0" style="-fx-background-color: grey;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="33.0">
-              <tabs>
-                <Tab text="Preview">
-                     <content>
-                        <TextArea fx:id="hudsonTextArea" editable="false" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9b9595;" />
-                     </content>
-                  </Tab>
-              </tabs>
-            </TabPane>
-            <Button fx:id="cancelButton" layoutX="427.0" layoutY="390.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
-            <Button fx:id="createFileSave" layoutX="354.0" layoutY="390.0" mnemonicParsing="false" onAction="#onSave" text="Save" />
-         </children>
-      </AnchorPane>
-   </children>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+	minWidth="-Infinity" prefHeight="433.0" prefWidth="496.0"
+	xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="application.PreviewController">
+	<children>
+		<AnchorPane prefHeight="446.0" prefWidth="496.0">
+			<children>
+				<TabPane layoutX="17.0" layoutY="34.0" prefHeight="342.0"
+					prefWidth="462.0" style="-fx-background-color: grey;"
+					tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="71.0"
+					AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="17.0"
+					AnchorPane.topAnchor="33.0">
+					<tabs>
+						<Tab text="Preview">
+							<content>
+								<TextArea fx:id="hudsonTextArea" editable="false"
+									prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #9b9595;" />
+							</content>
+						</Tab>
+					</tabs>
+				</TabPane>
+				<Button fx:id="cancelButton" layoutX="427.0" layoutY="390.0"
+					mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
+				<Button fx:id="createFileSave" layoutX="354.0" layoutY="390.0"
+					mnemonicParsing="false" onAction="#onSave" text="Save" />
+			</children>
+		</AnchorPane>
+	</children>
 </VBox>
